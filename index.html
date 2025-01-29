@@ -7,18 +7,24 @@
 <body>
 
 <div id="container">
+    <button id="home-button" class="hidden">←Home</button>
+    <div class="hidden" id="score">Score: 0</div>
     <h1>Riddle Game</h1>
     <div id="mode-selection">
         <button id="general-knowledge-mode">General Knowledge</button>
         <button id="math-mode">Math</button>
         <button id="logic-mode">Logic</button>
     </div>
-    <div id="game-area">
+    <div id="game-area" class="hidden">
         <div id="riddle"></div>
         <input type="text" id="answer" placeholder="Enter your answer">
+        <button id="submit-button">Submit</button>
         <button id="skip-button">Skip</button> 
         <div id="timer">Time Remaining: 20</div>
-        <div id="score">Score: 0</div>
+        <p id="feedback"></p>
+    </div>
+    <div class="hidden" id="results-area">
+        <p id="result">Your final score was: 0</p>
     </div>
 </div>
 
