@@ -19,24 +19,95 @@ const resultDisplay = document.getElementById('result');
 let score = 0;
 let questionIndex = 0;
 let mode;
-let time = 3;
+let time = 30;
 let currentRiddle;
 let currentAnswer;
 
 const general = [
     { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
     { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
-    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" }
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
+    { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
+    { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
+    { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
+    { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" }
 ];
 
 const math = [
     { riddle: "What is the only even prime number?", answer: "2" },
-    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" }
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" },
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
+    { riddle: "What is the only even prime number?", answer: "2" }
 ];
 
 const logic = [
     { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
-    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" }
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I am always coming, but never arrive. What am I?", answer: "Tomorrow" }, // New riddle
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" }, // New riddle
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I am always coming, but never arrive. What am I?", answer: "Tomorrow" }, // New riddle
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" }, // New riddle
+    { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
+    { riddle: "I am always coming, but never arrive. What am I?", answer: "Tomorrow" }, // New riddle
+    { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" }, // New riddle 
 ];
 
 homebtn.addEventListener('click', () => {
@@ -51,7 +122,7 @@ homebtn.addEventListener('click', () => {
 function resetGame() {
     score = 0;
     questionIndex = 0;
-    time = 3;
+    time = 30;
 }
 
 selectG.addEventListener('click', () => {
@@ -104,7 +175,7 @@ function startTimer() {
 function endScreen() {
     resultScreen.classList.remove('hidden');
     gameScreen.classList.add('hidden'); 
-    resultDisplay.value = `Your score was ${score}`;
+    resultDisplay.textContent = `Your score was ${score}`;
     homebtn.classList.remove('hidden');
 }
 
@@ -123,22 +194,30 @@ function displayQuestion() {
             currentAnswer = logic[questionIndex].answer;
             break;
     }
-
+    answer.textContent = '';
     riddleDisplay.textContent = currentRiddle;
 }
 
 submitbtn.addEventListener('click', () => {
-    if (answer.value === currentAnswer) {
-        score++;
-        scoreDisplay.value = `Score: ${score}`;
+    if (answer.value.trim().toLowerCase() === currentAnswer.trim().toLowerCase()) {
+        console.log(answer.value.trim().toLowerCase());
+        console.log(currentAnswer.trim().toLowerCase());
+        score = score+1;
+        console.log(score);
+        scoreDisplay.textContent = `Score: ${score}`;
+        questionIndex++;
     } else {
         if (score > 0) {
+            console.log("incorrect");
+            console.log(answer.value.trim().toLowerCase());
+            console.log(currentAnswer.trim().toLowerCase());
             score--;
-            scoreDisplay.value = `Score: ${score}`;
+            scoreDisplay.textContent = `Score: ${score}`;
+            questionIndex++;
         }
     }
-    questionIndex++;
     displayQuestion();
+
 });
 
 skipbtn.addEventListener('click', () => {
