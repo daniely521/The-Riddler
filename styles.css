@@ -1,3 +1,107 @@
 .hidden {
     display: none;
 }
+
+body {
+    background-color: rgb(235, 255, 235);
+    text-align: center;
+}
+
+h1 {
+    font-size: 30pt;
+}
+
+#general-knowledge-mode {
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(191, 249, 191);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#general-knowledge-mode:hover {
+    background-color: rgb(173, 245, 173);
+}
+
+#container {
+    padding: 30px;
+
+}
+
+#home-button {
+    left: 10px;
+    position: fixed;
+    background-color: rgb(235, 255, 235);
+    border: none;
+    text-decoration: underline;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(140, 221, 140);
+}
+
+#score {
+    position: fixed;
+    right: 10px;
+    font-size: 20px;
+    color: rgb(124, 198, 124);
+}
+
+#timer {
+    color: rgb(85, 111, 85);
+    font-size: 25px;
+    padding: 20px;
+}
+
+
+#riddle {
+    font-size: 20px;
+    color: rgb(71, 146, 71);
+    padding: 15px;
+}
+
+#answer{
+    font-size: 15px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: none;
+    background-color: rgb(202, 255, 202);
+    height: 40px;
+    width: 200px;
+    margin: 20px;
+}
+
+#submit-button {
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(191, 240, 249);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-button:hover {
+    background-color: rgb(159, 207, 215);
+}
+
+#skip-button {
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(249, 231, 191);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#skip-button:hover {
+    background-color: rgb(238, 214, 163);
+}
+
+#result {
+    font-size: 20px;
+    color: rgb(71, 146, 71);
+    padding: 15px;
+}

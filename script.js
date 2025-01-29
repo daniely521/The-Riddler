@@ -19,7 +19,7 @@ const resultDisplay = document.getElementById('result');
 let score = 0;
 let questionIndex = 0;
 let mode;
-let time = 20;
+let time = 30;
 let currentRiddle;
 let currentAnswer;
 
@@ -83,7 +83,7 @@ homebtn.addEventListener('click', () => {
 function resetGame() {
     score = 0;
     questionIndex = 0;
-    time = 20;
+    time = 30;
 }
 
 selectG.addEventListener('click', () => {
@@ -179,6 +179,13 @@ submitbtn.addEventListener('click', () => {
     }
     displayQuestion();
 
+});
+
+answer.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); 
+        submitbtn.click(); 
+    }
 });
 
 skipbtn.addEventListener('click', () => {
