@@ -1,145 +1,147 @@
-const generalKnowledgeMode = document.getElementById('general-knowledge-mode');
-const mathMode = document.getElementById('math-mode');
-const logicMode = document.getElementById('logic-mode');
-const gameArea = document.getElementById('game-area');
-const riddleDiv = document.getElementById('riddle');
-const answerInput = document.getElementById('answer');
-const skipButton = document.getElementById('skip-button');
-const timerDiv = document.getElementById('timer');
-const scoreDiv = document.getElementById('score');
+const homebtn = document.getElementById('home-button');
+const scoreDisplay = document.getElementById('score');
+const modeSelectScreen = document.getElementById('mode-selection');
+const selectG = document.getElementById('general-knowledge-mode');
+const selectM = document.getElementById('math-mode');
+const selectL = document.getElementById('logic-mode');
+
+const gameScreen = document.getElementById('game-area');
+const riddleDisplay = document.getElementById('riddle');
+const answer = document.getElementById('answer');
+const submitbtn = document.getElementById('submit-button');
+const skipbtn = document.getElementById('skip-button');
+const timer = document.getElementById('timer');
+const feedback = document.getElementById('feedback');
+
+const resultScreen = document.getElementById('results-area');
+const resultDisplay = document.getElementById('result');
 
 let score = 0;
-scoreDiv.textContent = `Score: ${score}`;
-let timeLeft = 20;
-let currentMode = 'general-knowledge'; 
-let currentRiddleIndex = 0;
+let questionIndex = 0;
+let mode;
+let time = 3;
+let currentRiddle;
+let currentAnswer;
 
-const generalKnowledgeRiddles = [
+const general = [
     { riddle: "I have cities, but no houses; forests, but no trees; and water, but no fish. What am I?", answer: "A map" },
     { riddle: "I have no voice, but I can speak to you. I have no life, but I can flourish. What am I?", answer: "A book" },
-    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" },
-    
+    { riddle: "I am always coming, but never arrive. I always present, but never here. I always moving, but never a place. What am I?", answer: "Tomorrow" }
 ];
 
-const mathRiddles = [
+const math = [
     { riddle: "What is the only even prime number?", answer: "2" },
-    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" },
-    
+    { riddle: "If I have 5 apples and I eat 3, how many apples do I have left?", answer: "2" }
 ];
 
-const logicRiddles = [
+const logic = [
     { riddle: "I have no life, but I can grow. I have no voice, but I can roar. What am I?", answer: "A fire" },
-    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" },
-    
+    { riddle: "I am tall when I am young, and short when I am old. What am I?", answer: "A candle" }
 ];
 
-function showRiddle() {
-    let currentRiddle;
-    switch (currentMode) {
-        case 'general-knowledge':
-            currentRiddle = generalKnowledgeRiddles[currentRiddleIndex];
-            break;
-        case 'math':
-            currentRiddle = mathRiddles[currentRiddleIndex];
-            break;
-        case 'logic':
-            currentRiddle = logicRiddles[currentRiddleIndex];
-            break;
-    }
+homebtn.addEventListener('click', () => {
+    gameScreen.classList.add("hidden");
+    modeSelectScreen.classList.remove('hidden');
+    resultScreen.classList.add('hidden');
+    homebtn.classList.add('hidden');
+    scoreDisplay.classList.add('hidden');
+    resetGame();
+});
 
-    riddleDiv.textContent = currentRiddle.riddle;
-    answerInput.value = '';
-    timeLeft = 20;
-    timerDiv.textContent = `Time Remaining: ${timeLeft}`;
-    startTimer();
-    skipButton.style.display = 'block'; 
+function resetGame() {
+    score = 0;
+    questionIndex = 0;
+    time = 3;
 }
+
+selectG.addEventListener('click', () => {
+    resetGame();
+    gameScreen.classList.remove('hidden');
+    modeSelectScreen.classList.add('hidden');
+    homebtn.classList.remove('hidden');
+    scoreDisplay.classList.remove('hidden');
+    mode = 'g';
+    displayQuestion();
+    startTimer();
+});
+
+selectL.addEventListener('click', () => {
+    resetGame();
+    gameScreen.classList.remove('hidden');
+    modeSelectScreen.classList.add('hidden');
+    homebtn.classList.remove('hidden');
+    scoreDisplay.classList.remove('hidden');
+    mode = 'l';
+    displayQuestion();
+    startTimer();
+});
+
+selectM.addEventListener('click', () => {
+    resetGame();
+    gameScreen.classList.remove('hidden');
+    modeSelectScreen.classList.add('hidden');
+    homebtn.classList.remove('hidden');
+    scoreDisplay.classList.remove('hidden');
+    mode = 'm';
+    displayQuestion();
+    startTimer();
+});
 
 function startTimer() {
     const timerInterval = setInterval(() => {
-        timeLeft--;
-        timerDiv.textContent = `Time Remaining: ${timeLeft}`;
+        time--;
+        timer.textContent = `Time Remaining: ${time}`;
 
-        if (timeLeft === 0) {
+        if (time === 0) {
             clearInterval(timerInterval);
-            alert("Time's up!");
-            showScoreScreen(); 
+            resultScreen.classList.remove('hidden');
+            gameScreen.classList.add('hidden'); 
+            endScreen();
         }
     }, 1000);
 }
 
-function showScoreScreen() {
-    riddleDiv.textContent = "";
-    answerInput.style.display = "none";
-    timerDiv.style.display = "none";
-    scoreDiv.textContent = `Game Over! Your final score: ${score}`;
-
-    const homeButton = document.createElement('button');
-    homeButton.textContent = "Home";
-    homeButton.addEventListener('click', () => {
-        location.reload();
-    });
-    gameArea.appendChild(homeButton);
+function endScreen() {
+    resultScreen.classList.remove('hidden');
+    gameScreen.classList.add('hidden'); 
+    resultDisplay.value = `Your score was ${score}`;
+    homebtn.classList.remove('hidden');
 }
 
-function checkAnswer() {
-    let currentRiddle;
-    switch (currentMode) {
-        case 'general-knowledge':
-            currentRiddle = generalKnowledgeRiddles[currentRiddleIndex];
+function displayQuestion() {
+    switch (mode) {
+        case 'g' :
+            currentRiddle = general[questionIndex].riddle;
+            currentAnswer = general[questionIndex].answer;
             break;
-        case 'math':
-            currentRiddle = mathRiddles[currentRiddleIndex];
+        case 'm' :
+            currentRiddle = math[questionIndex].riddle;
+            currentAnswer = math[questionIndex].answer;
             break;
-        case 'logic':
-            currentRiddle = logicRiddles[currentRiddleIndex];
+        case 'l' :
+            currentRiddle = logic[questionIndex].riddle;
+            currentAnswer = logic[questionIndex].answer;
             break;
     }
 
-    const userAnswer = answerInput.value.toLowerCase();
+    riddleDisplay.textContent = currentRiddle;
+}
 
-    if (userAnswer === currentRiddle.answer.toLowerCase()) {
+submitbtn.addEventListener('click', () => {
+    if (answer.value === currentAnswer) {
         score++;
-        alert("Correct!");
+        scoreDisplay.value = `Score: ${score}`;
     } else {
-        score--;
-        alert("Incorrect!");
+        if (score > 0) {
+            score--;
+            scoreDisplay.value = `Score: ${score}`;
+        }
     }
-
-    scoreDiv.textContent = `Score: ${score}`;
-    currentRiddleIndex++;
-
-    if (currentRiddleIndex < currentRiddle.length) {
-        showRiddle();
-    } else {
-        alert("Game Over! Your final score: " + score);
-        startButton.disabled = false;
-    }
-}
-
-generalKnowledgeMode.addEventListener('click', () => {
-    currentMode = 'general-knowledge';
-    gameArea.style.display = 'block'; 
-    currentRiddleIndex = 0;
-    showRiddle(); 
+    questionIndex++;
+    displayQuestion();
 });
 
-mathMode.addEventListener('click', () => {
-    currentMode = 'math';
-    gameArea.style.display = 'block'; 
-    currentRiddleIndex = 0; 
-    showRiddle(); 
-});
-
-logicMode.addEventListener('click', () => {
-    currentMode = 'logic';
-    gameArea.style.display = 'block'; 
-    currentRiddleIndex = 0;
-    showRiddle(); 
-});
-
-answerInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        checkAnswer();
-    }
+skipbtn.addEventListener('click', () => {
+    questionIndex++;
+    displayQuestion();
 });
